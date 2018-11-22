@@ -1,0 +1,4 @@
+service1 :
+  version: "latest"
+service2 :
+  version: "latest"

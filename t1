@@ -1,0 +1,36 @@
+#!groovy
+
+
+def datas
+
+node('skopeo') {
+
+   stage('Read File') {
+       
+        echo "Reading File"
+        git 'https://github.com/Tses/pipeline.git'
+        echo "Checked Out"
+        sh " skopeo -v"
+        datas = readYaml file: 'promotes.yaml'
+        echo datas.service1.version
+        if (datas.service1 != null) {
+          echo "Service 1 Is not Null"
+          
+          sh " oc start-build service1-pipeline -n jenkins1 "
+          
+        } else {
+          echo "Service 1 Is Null"
+        }  
+        if (datas.service2 != null) {
+          echo "Service 2  Is not Null"
+        } else {
+          echo "Service 2  Is Null"
+        }          
+        if (datas.service3 != null) {
+          echo "Service 3  Is not Null"
+        } else {
+          echo "Service 3  Is Null"
+        }                  
+    }
+}
+  

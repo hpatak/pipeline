@@ -1,0 +1,4 @@
+- name : "service1"
+  version: "latest"
+- name : "service2"
+  version: "v1.1"
